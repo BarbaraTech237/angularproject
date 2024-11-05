@@ -1,20 +1,18 @@
-import { Component, Input, input, SkipSelf, ViewChildren, QueryList, ContentChild } from '@angular/core';
-import { BaseButton } from './pipe.component.js';
+import { Component, Input, input, SkipSelf } from '@angular/core';
+import { BaseButtonComponent } from './pipe.component.js';
 import { LeafService } from './heroes/hero.service.js';
 import { AnimalService } from './heroes/animal.service.js';
-import { CustomCardHeader } from './custom.component.js';
-import { FavoriteColorComponent } from './forrm.component.js';
+ import { FavoriteColorComponent } from './forrm.component.js';
 import { PopupComponent } from './customElement.component.js';
 import { HighlightDirective } from './highlight.directive.js';
-import { ReactiveFormsModule } from '@angular/forms';
-
- 
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { CustomCardHeaderComponent } from './custom.component.js';
 
 @Component({
     selector: 'app-test',
     standalone: true,
     // templateUrl: './app.component.html',
-    imports: [BaseButton, FavoriteColorComponent, CustomCardHeader, PopupComponent, HighlightDirective, ReactiveFormsModule],
+    imports: [BaseButtonComponent, FavoriteColorComponent, PopupComponent, HighlightDirective, ReactiveFormsModule, CustomCardHeaderComponent],
     providers: [{ provide: LeafService, useValue: { emoji: '🍁' } }],
     viewProviders: [{ provide: AnimalService, useValue: { emoji: '🐶' } }],
 
@@ -41,11 +39,11 @@ import { ReactiveFormsModule } from '@angular/forms';
       }
         <app-custom-card-action>Save</app-custom-card-action>
     <app-custom-card-action>Cancel</app-custom-card-action>
-    <my-popup message="Use Angular!"></my-popup>
+    <app-my-popup message="Use Angular!"></app-my-popup>
 
     <p appHighlight>Highlight me!</p>
 
- <p class="data-view" *select="let data from source">The data is: {{data}}</p>
+ <p class="data-view" >The data is: {{data}}</p>
  <ng-container *select let data from source>
   <p class="data-view">The data is: {{data}}</p>
 
@@ -72,23 +70,11 @@ export class TestComponent {
     // constructor(  @SkipSelf()  public leaf: LeafService) { }
     constructor(@SkipSelf() public animal: AnimalService) { }
 
-    // @ViewChild(CustomCardHeader) header!: CustomCardHeader;
-
-    // ngAfterViewInit() {
-    //      console.log(this.header.text);
+ 
+    // @ContentChild(FavoriteColorComponent) toggle!: FavoriteColorComponent;
+    // ngAfterContentInit() {
+    //     console.log(this.toggle.text);
     // }
-
-    @ViewChildren(CustomCardHeader) actions!: QueryList<CustomCardHeader> ;
-    ngAfterViewInit() {
-        this.actions.forEach(action => {
-                 console.log(action.text);
-         });
-    }
-
-    @ContentChild(FavoriteColorComponent) toggle!: FavoriteColorComponent;
-    ngAfterContentInit() {
-        console.log(this.toggle.text);
-    }
 
 }
 

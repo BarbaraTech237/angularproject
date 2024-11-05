@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
     standalone: true,
-    selector: 'my-popup',
+    selector: 'app-my-popup',
     template: `
     <span>Popup: {{ message }}</span>
     <button type="button" (click)="closed.next()">✖</button>
@@ -22,8 +22,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         left: 0;
         right: 0;
         background: #009cff;
-        height: 48px;
-        padding: 16px;
+        height: 15px;
+        padding: 46px;
         display: flex;
         justify-content: space-between;
         align-items: center;

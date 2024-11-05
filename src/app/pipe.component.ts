@@ -7,4 +7,4 @@ import { Component } from '@angular/core';
       <ng-content />
   `,
 })
-export class BaseButton { }
+export class BaseButtonComponent { }
